@@ -1,0 +1,67 @@
+# 微信支付配置示例
+wechat:
+  pay:
+    # 微信小程序/公众号应用ID
+    app-id: your_app_id_here
+    # 商户号
+    mch-id: your_mch_id_here
+    # 商户API密钥（API v2使用，v3已弃用）
+    api-key: your_api_key_here
+    # 商户证书序列号
+    serial-no: your_serial_no_here
+    # 商户私钥文件路径
+    private-key-path: /path/to/your/private_key.pem
+    # 微信支付平台证书文件路径
+    certificate-path: /path/to/your/wechatpay_certificate.pem
+    # 支付结果通知URL
+    notify-url: https://your-domain.com/api/wechat/pay/notify
+    # 退款结果通知URL
+    refund-notify-url: https://your-domain.com/api/wechat/pay/refund/notify
+
+# Spring Boot 配置
+spring:
+  application:
+    name: wechat-pay-demo
+  profiles:
+    active: dev
+
+# 服务器配置
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# 日志配置
+logging:
+  level:
+    com.extrigger.wechat: DEBUG
+    org.apache.http: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/wechat-pay.log
+
+---
+# 开发环境配置
+spring:
+  config:
+    activate:
+      on-profile: dev
+  
+logging:
+  level:
+    root: INFO
+    com.extrigger.wechat: DEBUG
+
+---
+# 生产环境配置
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+logging:
+  level:
+    root: WARN
+    com.extrigger.wechat: INFO

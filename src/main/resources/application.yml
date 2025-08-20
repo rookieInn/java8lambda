@@ -1,0 +1,52 @@
+# 服务器配置
+server:
+  port: 8080
+
+# Spring配置
+spring:
+  application:
+    name: wechat-pay-demo
+
+# 微信支付配置
+wechat:
+  pay:
+    # 应用ID（公众号ID或小程序ID）
+    app-id: YOUR_APP_ID
+    # 商户号
+    mch-id: YOUR_MCH_ID
+    # 商户API密钥（API v2使用）
+    api-key: YOUR_API_KEY
+    # API v3密钥（32位）
+    api-v3-key: YOUR_API_V3_KEY
+    # 商户证书序列号
+    mch-serial-no: YOUR_MCH_SERIAL_NO
+    # 商户私钥路径（可选，如果使用private-key则不需要）
+    private-key-path: /path/to/apiclient_key.pem
+    # 商户私钥内容（可选，PEM格式，包含BEGIN和END标记）
+    private-key: |
+      -----BEGIN PRIVATE KEY-----
+      YOUR_PRIVATE_KEY_CONTENT
+      -----END PRIVATE KEY-----
+    # 微信支付平台证书路径
+    wechat-pay-cert-path: /path/to/wechatpay_cert.pem
+    # 支付回调地址
+    notify-url: https://your-domain.com/api/wechat-pay/notify/payment
+    # 退款回调地址
+    refund-notify-url: https://your-domain.com/api/wechat-pay/notify/refund
+    # 是否使用沙箱环境
+    sandbox-enabled: false
+    # 连接超时时间（毫秒）
+    connect-timeout: 5000
+    # 读取超时时间（毫秒）
+    read-timeout: 10000
+
+# 日志配置
+logging:
+  level:
+    com.example.wechatpay: DEBUG
+    org.springframework.web: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/wechat-pay.log

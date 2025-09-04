@@ -6,6 +6,28 @@ server:
 spring:
   application:
     name: wechat-pay-demo
+  
+  # 数据库配置
+  datasource:
+    # MySQL配置示例
+    url: jdbc:mysql://localhost:3306/your_database?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: your_username
+    password: your_password
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    
+    # PostgreSQL配置示例（注释掉，根据需要选择）
+    # url: jdbc:postgresql://localhost:5432/your_database
+    # username: your_username
+    # password: your_password
+    # driver-class-name: org.postgresql.Driver
+    
+    # 连接池配置
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
 
 # 微信支付配置
 wechat:
